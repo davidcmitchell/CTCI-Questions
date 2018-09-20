@@ -26,19 +26,17 @@ class LinkedList {
 
         void removeDuplicates() {
             Node *curr = head.get();
-            while (curr->next != nullptr)
+            while (curr != nullptr && curr->next != nullptr)
             {
                 Node *curr_ahead = curr;
-                while (curr_ahead->next != nullptr)
+                while (curr_ahead != nullptr && curr_ahead->next != nullptr)
                 {
                     while (curr_ahead->next != nullptr && curr_ahead->next->data == curr->data)
                     {
                         curr_ahead->next = std::move(curr_ahead->next->next);
                     }
-                    if (curr_ahead->next != nullptr)
-                    {
-                        curr_ahead = curr_ahead->next.get();
-                    }
+                    
+                    curr_ahead = curr_ahead->next.get();
                 }
                 curr = curr->next.get();
             }
